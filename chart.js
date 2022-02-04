@@ -28,6 +28,11 @@ async function drawScatter() {
   console.log(dataset);
   const xAccessor = (d) => Number(d.precipitation || 0);
   const yAccessor = (d) => Number(d.humidity || 0);
+  const dateTransformer = (datestring) => {
+    const [year, monthPlusOne, date] = datestring.split(".").map(Number);
+    return new Date(year, monthPlusOne - 1);
+  };
+  const colorAccessor = (d) => dateTransformer(d.date);
 
   // 2. Create chart dimensions
 
@@ -65,8 +70,8 @@ async function drawScatter() {
 
   // Step 5: Draw data
   // very naive way
-  // nesting
-  // dots can be drew multiple time.
+  // : nesting
+  // : dots can be drew multiple time.
   // dataset.forEach((d) => {
   //   bounds
   //     .append("circle")
@@ -75,6 +80,10 @@ async function drawScatter() {
   //     .attr("r", 5);
   // });
 
+  const colorScale = d3
+    .scaleLinear()
+    .domain(d3.extent(dataset, colorAccessor))
+    .range(["hotpink", "black"]);
   const dots = bounds
     .selectAll("circle")
     .data(dataset)
@@ -83,7 +92,8 @@ async function drawScatter() {
     .attr("cx", (d) => xScale(xAccessor(d)))
     .attr("cy", (d) => yScale(yAccessor(d)))
     .attr("r", 4)
-    .attr("fill", "#A50034");
+    // .attr("fill", "#A50034");
+    .attr("fill", (d) => colorScale(colorAccessor(d)));
 
   // Step 6: Draw peripherals
 
@@ -114,7 +124,7 @@ async function drawScatter() {
     .attr("y", -dimensions.margin.left + 20)
     .attr("fill", "#6b6b6b")
     .style("font-size", "1rem")
-    .text("Humidity")
+    .text("Humidity (%)")
     // 원래 각도는 0도가 아니라 180도임. 시계 반대 방향으로 회전.
     .style("transform", "rotate(-90deg)")
     .style("text-anchor", "middle");
