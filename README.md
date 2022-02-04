@@ -1,4 +1,9 @@
-# 동작하는 코드 보기
+# D3로 2021~2022 서울의 습도와 강수량 관계 알아보기.
+
+[날씨 데이터 출처](https://data.kma.go.kr/climate/RankState/selectRankStatisticsDivisionList.do?pgmNo=179)  
+[강의 링크](https://www.newline.co/fullstack-d3)
+
+## 동작하는 코드 보기
 
 https://codesandbox.io/s/scatterplot-6pt4q
 
