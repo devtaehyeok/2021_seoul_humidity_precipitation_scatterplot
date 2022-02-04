@@ -1,4 +1,8 @@
-# 모든 d3 그래프의 기초
+# 동작하는 코드 보기
+
+https://codesandbox.io/s/scatterplot-6pt4q
+
+## 모든 d3 그래프의 기초
 
 ![basic](./img/chart-checklist.png)
 
@@ -36,11 +40,11 @@
 const width = d3.min([window.innerWidth * 0.9, window.innerHeight * 0.9]);
 ```
 
-> Math.min will count any `nulls` in the array as 0, whereas `d3.min will ignore them`
-> Math.min will return `NaN` if there is a value in the array that is undefined or can't be converted into a number, whereas `d3.min will ignore it`
-> d3.min will prevent the need to create another array of values if we need to use an accessor function
-> Math.min will return Infinity if the dataset is empty, whereas `d3.min will return undefined`
-> Math.min uses numeric order, whereas `d3.min uses natural order, which allows it to handle strings`.
+> Math.min will count any `nulls` in the array as 0, whereas `d3.min will ignore them`  
+> Math.min will return `NaN` if there is a value in the array that is undefined or can't be converted into a number, whereas `d3.min will ignore it`  
+> d3.min will prevent the need to create another array of values if we need to use an accessor function  
+> Math.min will return Infinity if the dataset is empty, whereas `d3.min will return undefined`  
+> Math.min uses numeric order, whereas `d3.min uses natural order, which allows it to handle strings`.  
 > **Make sure to convert your values to numbers beforehand**
 
 Math.min보다 이걸 쓰자.
@@ -60,7 +64,7 @@ Math.min보다 이걸 쓰자.
 
 ## 산포도 그리기
 
-라인 차트는 모든 점을 포함하는 하나의 선 (추세)
+라인 차트는 모든 점을 포함하는 하나의 선 (추세)  
 산포도는 하나의 데이터 하나의 원 (관계)
 
 ![cheat-sheet](./img/css-cheatsheet.png)
